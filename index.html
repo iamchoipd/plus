@@ -2,25 +2,42 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0">
 
 <title>세 수 계산 달리기</title>
 
 <style>
+
+/* =========================================================
+   기본
+========================================================= */
+
 * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
+
     width: 100%;
     min-height: 100%;
-    font-family: "Malgun Gothic", "Noto Sans KR", Arial, sans-serif;
-    background: #f2f6fb;
+
+    font-family:
+        "Malgun Gothic",
+        "Noto Sans KR",
+        Arial,
+        sans-serif;
+
+    background: #f3f6fa;
     color: #172033;
+
     touch-action: manipulation;
 }
 
@@ -36,7 +53,7 @@ button {
 }
 
 button:active {
-    transform: scale(0.97);
+    transform: scale(0.96);
 }
 
 .hidden {
@@ -49,86 +66,180 @@ button:active {
 ========================================================= */
 
 .start-screen {
-    width: min(900px, calc(100% - 30px));
+
+    width: min(
+        900px,
+        calc(100% - 30px)
+    );
+
     margin: 25px auto;
+
     padding: 30px;
+
     background: white;
+
     border-radius: 28px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.08);
 }
 
+
 .main-title {
+
     margin: 0;
+
     text-align: center;
-    font-size: clamp(32px, 5vw, 52px);
+
+    font-size:
+        clamp(
+            32px,
+            5vw,
+            52px
+        );
+
     font-weight: 1000;
 }
 
+
 .sub-title {
+
+    margin:
+        10px 0 30px;
+
     text-align: center;
-    margin: 10px 0 30px;
-    font-size: 19px;
+
     color: #657085;
+
+    font-size: 19px;
+
     font-weight: 700;
 }
 
+
 .settings {
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
     gap: 14px;
 }
 
+
 .setting {
+
     padding: 15px;
+
     background: #f6f8fb;
-    border: 2px solid #dfe6ef;
+
+    border:
+        2px solid
+        #dfe6ef;
+
     border-radius: 18px;
 }
 
+
 .setting label {
+
     display: block;
-    font-size: 17px;
-    font-weight: 900;
+
     margin-bottom: 8px;
+
+    font-size: 17px;
+
+    font-weight: 900;
 }
 
+
 .setting select {
+
     width: 100%;
+
     height: 52px;
-    padding: 0 10px;
-    border: 2px solid #ccd7e5;
-    background: white;
+
+    padding:
+        0 10px;
+
+    border:
+        2px solid
+        #ccd7e5;
+
     border-radius: 12px;
+
+    background: white;
+
     font-size: 19px;
+
     font-weight: 800;
 }
 
+
 .names {
+
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+
+    grid-template-columns:
+        repeat(
+            5,
+            1fr
+        );
+
     gap: 9px;
+
     margin-top: 18px;
 }
 
+
 .name-input {
+
     width: 100%;
+
     height: 52px;
-    border: 2px solid #d5deea;
+
+    border:
+        2px solid
+        #d5deea;
+
     border-radius: 12px;
+
     text-align: center;
+
     font-size: 17px;
+
     font-weight: 900;
 }
 
+
 .start-btn {
+
     display: block;
-    width: min(420px, 100%);
+
+    width:
+        min(
+            420px,
+            100%
+        );
+
     min-height: 68px;
-    margin: 25px auto 0;
-    background: #2577df;
-    color: white;
+
+    margin:
+        25px auto 0;
+
     border-radius: 18px;
+
+    background: #2577df;
+
+    color: white;
+
     font-size: 26px;
+
     font-weight: 1000;
 }
 
@@ -141,26 +252,53 @@ button:active {
     padding: 8px;
 }
 
+
 .game-header {
+
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+        space-between;
+
     align-items: center;
+
     gap: 12px;
-    padding: 4px 5px 9px;
+
+    padding:
+        4px 5px 9px;
 }
 
+
 .game-info {
-    font-size: clamp(17px, 2vw, 23px);
+
+    font-size:
+        clamp(
+            17px,
+            2vw,
+            23px
+        );
+
     font-weight: 900;
 }
 
+
 .exit-btn {
+
     min-height: 44px;
-    padding: 8px 15px;
+
+    padding:
+        8px 15px;
+
+    border:
+        2px solid
+        #ccd7e3;
+
     border-radius: 11px;
-    border: 2px solid #ccd7e3;
+
     background: white;
+
     font-size: 15px;
+
     font-weight: 900;
 }
 
@@ -170,37 +308,59 @@ button:active {
 ========================================================= */
 
 .player-grid {
+
     display: grid;
-    gap: 8px;
+
     width: 100%;
+
+    gap: 8px;
 }
+
 
 .player-grid.count-1 {
-    grid-template-columns: 1fr;
+
+    grid-template-columns:
+        1fr;
 }
+
 
 .player-grid.count-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0,1fr)
+        );
 }
+
 
 .player-grid.count-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0,1fr)
+        );
 }
+
 
 .player-grid.count-4 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0,1fr)
+        );
 }
+
 
 .player-grid.count-5 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
 
-.player-grid.count-5 .player-panel:nth-child(4) {
-    grid-column: 1 / 2;
-}
-
-.player-grid.count-5 .player-panel:nth-child(5) {
-    grid-column: 2 / 3;
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0,1fr)
+        );
 }
 
 
@@ -209,356 +369,680 @@ button:active {
 ========================================================= */
 
 .player-panel {
-    min-width: 0;
+
     position: relative;
+
+    min-width: 0;
+
     overflow: hidden;
-    background: white;
-    border: 4px solid var(--player-color);
-    border-radius: 20px;
+
     padding: 10px;
+
+    border:
+        4px solid
+        var(--player-color);
+
+    border-radius: 20px;
+
+    background: white;
 }
 
+
 .player-head {
+
     display: flex;
+
+    justify-content:
+        space-between;
+
     align-items: center;
-    justify-content: space-between;
+
     gap: 8px;
+
     margin-bottom: 7px;
 }
 
+
 .player-title {
+
     display: flex;
+
     align-items: center;
+
     gap: 7px;
+
     min-width: 0;
-    font-size: clamp(17px, 2vw, 23px);
+
+    font-size:
+        clamp(
+            17px,
+            2vw,
+            23px
+        );
+
     font-weight: 1000;
 }
 
+
 .player-name {
+
     overflow: hidden;
+
     text-overflow: ellipsis;
+
     white-space: nowrap;
 }
 
+
 .player-emoji {
+
     font-size: 27px;
 }
 
+
 .progress-number {
+
     white-space: nowrap;
-    font-size: 15px;
-    font-weight: 900;
+
     color: #637083;
+
+    font-size: 15px;
+
+    font-weight: 900;
 }
 
 
 /* =========================================================
-   레이스 트랙
+   레이스
 ========================================================= */
 
 .track {
-    height: 42px;
+
     position: relative;
-    margin-bottom: 7px;
-    border: 2px solid #d9e1eb;
+
+    height: 42px;
+
+    margin-bottom: 9px;
+
+    border:
+        2px solid
+        #d9e1eb;
+
     border-radius: 22px;
 
     background:
+
         repeating-linear-gradient(
+
             90deg,
+
             #eef2f7 0%,
+
             #eef2f7 8%,
+
             white 8%,
+
             white 10%
         );
 }
 
+
 .track::before {
+
     content: "🚩";
+
     position: absolute;
+
     left: 2px;
+
     top: 50%;
-    transform: translateY(-50%);
+
+    transform:
+        translateY(-50%);
+
     font-size: 20px;
 }
 
+
 .track::after {
+
     content: "🏁";
+
     position: absolute;
+
     right: 2px;
+
     top: 50%;
-    transform: translateY(-50%);
+
+    transform:
+        translateY(-50%);
+
     font-size: 22px;
 }
 
+
 .runner {
+
     position: absolute;
+
     left: 6%;
+
     top: 50%;
+
     width: 35px;
+
     height: 35px;
 
-    transform: translate(-50%, -50%);
-
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
 
     border-radius: 50%;
 
-    background: var(--player-color);
+    background:
+        var(--player-color);
 
     font-size: 21px;
 
+    box-shadow:
+        0 2px 5px
+        rgba(0,0,0,0.18);
+
     transition:
-        left 0.7s cubic-bezier(.2,.8,.3,1);
-
-    box-shadow: 0 2px 5px rgba(0,0,0,0.18);
+        left
+        0.7s
+        cubic-bezier(
+            .2,
+            .8,
+            .3,
+            1
+        );
 }
 
 
 /* =========================================================
-   문제
+   문제 전체 영역
 ========================================================= */
 
-.problem {
-    text-align: center;
-    font-size: clamp(30px, 4vw, 52px);
+.problem-area {
+
+    padding:
+        3px 2px 5px;
+}
+
+
+/* =========================================================
+   원래 세 수 계산식
+========================================================= */
+
+.original-expression {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    flex-wrap: nowrap;
+
+    gap:
+        clamp(
+            4px,
+            0.8vw,
+            10px
+        );
+
+    margin:
+        6px auto 0;
+
+    font-size:
+        clamp(
+            31px,
+            4vw,
+            55px
+        );
+
+    line-height: 1.35;
+
     font-weight: 1000;
-    line-height: 1.15;
-    margin: 7px 0 9px;
+
     white-space: nowrap;
 }
 
 
-/* =========================================================
-   연속 계산 영역
-========================================================= */
+/* 앞의 두 수 묶음 */
 
-.calculation-chain {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+.first-group {
+
+    position: relative;
+
+    display: inline-flex;
+
     align-items: center;
-    margin: 2px auto 7px;
+
+    gap:
+        clamp(
+            4px,
+            0.8vw,
+            10px
+        );
+
+    padding:
+        0 5px 12px;
 }
 
 
-/* 첫 번째 계산 */
+/*
+   처음 두 수 아래에
+   U자 모양 계산선
+*/
 
-.calc-row {
-    width: 100%;
-    max-width: 390px;
+.first-group::after {
 
-    min-height: 58px;
+    content: "";
 
-    display: flex;
+    position: absolute;
+
+    left: 2px;
+
+    right: 2px;
+
+    bottom: 2px;
+
+    height: 10px;
+
+    border-left:
+        4px solid
+        #159ed3;
+
+    border-right:
+        4px solid
+        #159ed3;
+
+    border-bottom:
+        4px solid
+        #159ed3;
+
+    border-radius:
+        0 0 10px 10px;
+}
+
+
+.first-group.done::after {
+
+    border-color:
+        #48a757;
+}
+
+
+.expression-token {
+
+    display: inline-flex;
+
+    align-items: center;
+
     justify-content: center;
-    align-items: center;
-
-    gap: 8px;
-
-    padding: 6px;
-
-    border-radius: 14px;
-}
-
-.calc-row.active {
-    background: #eef7ff;
-    outline: 3px solid #6db4ed;
-}
-
-.calc-row.complete {
-    background: #eef9ef;
-    outline: 3px solid #80c784;
-}
-
-.calc-expression {
-    font-size: clamp(24px, 3vw, 38px);
-    font-weight: 1000;
-    white-space: nowrap;
-}
-
-.answer-box {
-    width: 68px;
-    min-width: 68px;
-    height: 56px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 4px solid #9bc9ee;
-    border-radius: 13px;
-
-    background: #eaf5ff;
-
-    font-size: 35px;
-    font-weight: 1000;
-}
-
-.answer-box.final {
-    border-color: #b4d66b;
-    background: #eff8c9;
-}
-
-.answer-box.correct {
-    border-color: #56b561;
-    background: #dff5e0;
-}
-
-.answer-box.wrong {
-    border-color: #ea5151;
-    background: #ffe0e0;
-
-    animation: shake 0.28s;
 }
 
 
 /* =========================================================
-   첫 번째 답이 아래 계산으로 내려가는 부분
+   처음 계산한 답
 ========================================================= */
 
-.answer-flow {
-    width: 100%;
-    max-width: 390px;
+.first-step-area {
 
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
 
-    min-height: 54px;
-
-    margin: 2px 0;
+    margin-top: 0;
 }
 
-.flow-line {
-    width: 5px;
+
+.first-down-line {
+
+    width: 4px;
+
     height: 20px;
-    background: #08a9df;
-    border-radius: 5px;
+
+    background: #159ed3;
 }
 
-.flow-arrow {
-    width: 15px;
-    height: 15px;
 
-    border-right: 5px solid #08a9df;
-    border-bottom: 5px solid #08a9df;
+.first-down-arrow {
 
-    transform: rotate(45deg);
+    width: 13px;
 
-    margin-top: -8px;
+    height: 13px;
+
+    margin-top: -7px;
+
+    border-right:
+        4px solid
+        #159ed3;
+
+    border-bottom:
+        4px solid
+        #159ed3;
+
+    transform:
+        rotate(45deg);
 }
 
-.flow-message {
-    margin-top: 7px;
 
-    padding: 3px 10px;
+.step-caption {
 
-    border-radius: 15px;
+    margin:
+        6px 0 5px;
 
-    background: #e5f7fd;
+    color: #177ea7;
 
-    color: #087fa8;
-
-    font-size: clamp(12px, 1.4vw, 16px);
+    font-size:
+        clamp(
+            12px,
+            1.3vw,
+            16px
+        );
 
     font-weight: 900;
+}
 
-    text-align: center;
+
+.answer-box {
+
+    width: 72px;
+
+    min-width: 72px;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        4px solid
+        #84c3eb;
+
+    border-radius: 13px;
+
+    background: #eaf6ff;
+
+    font-size: 36px;
+
+    font-weight: 1000;
+}
+
+
+.answer-box.correct {
+
+    border-color: #55b560;
+
+    background: #ddf5df;
+}
+
+
+.answer-box.wrong {
+
+    border-color: #e64f4f;
+
+    background: #ffe1e1;
+
+    animation:
+        shake 0.3s;
 }
 
 
 /* =========================================================
-   두 번째 계산
+   이어서 계산 영역
 ========================================================= */
 
-.second-row {
-    width: 100%;
-    max-width: 390px;
+.continue-area {
 
-    min-height: 60px;
+    display: none;
 
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
+
     align-items: center;
 
-    gap: 8px;
-
-    padding: 6px;
-
-    border-radius: 14px;
-}
-
-.second-row.active {
-    background: #fff8dd;
-    outline: 3px solid #efc54b;
-}
-
-.second-row.complete {
-    background: #eef9ef;
-    outline: 3px solid #80c784;
+    margin-top: 2px;
 }
 
 
-/* 이전 답을 다시 보여주는 칸 */
+.continue-area.show {
 
-.carried-answer {
-    width: 58px;
+    display: flex;
+}
+
+
+.continue-line {
+
+    width: 4px;
+
+    height: 18px;
+
+    background: #159ed3;
+}
+
+
+.continue-arrow {
+
+    width: 13px;
+
+    height: 13px;
+
+    margin-top: -7px;
+
+    border-right:
+        4px solid
+        #159ed3;
+
+    border-bottom:
+        4px solid
+        #159ed3;
+
+    transform:
+        rotate(45deg);
+}
+
+
+.continue-caption {
+
+    margin:
+        5px 0;
+
+    padding:
+        4px 10px;
+
+    border-radius: 13px;
+
+    background: #e8f7fc;
+
+    color: #087da5;
+
+    font-size:
+        clamp(
+            12px,
+            1.4vw,
+            17px
+        );
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   원래 식이 줄어든 모습
+
+   예)
+   3 + 2 + 4
+       ↓
+     5 + 4
+========================================================= */
+
+.reduced-expression {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap:
+        clamp(
+            6px,
+            1vw,
+            12px
+        );
+
+    padding:
+        7px 12px;
+
+    border:
+        3px solid
+        #159ed3;
+
+    border-radius: 18px;
+
+    background: #f0faff;
+}
+
+
+.carried-number {
+
+    min-width: 55px;
+
     height: 52px;
 
     display: flex;
-    justify-content: center;
+
     align-items: center;
 
-    border: 4px solid #08a9df;
-    border-radius: 12px;
+    justify-content: center;
 
-    background: #e5f7fd;
+    border-radius: 11px;
 
-    color: #0b6f92;
+    background: #159ed3;
 
-    font-size: 32px;
+    color: white;
+
+    font-size:
+        clamp(
+            28px,
+            3vw,
+            39px
+        );
+
     font-weight: 1000;
+
+    animation:
+        pop 0.35s;
 }
 
-.carried-answer.waiting {
-    color: #81909c;
-    border-color: #bbcbd5;
-    background: #f1f4f6;
-}
 
-.second-operation {
-    font-size: clamp(24px, 3vw, 38px);
+.reduced-part {
+
+    font-size:
+        clamp(
+            27px,
+            3vw,
+            40px
+        );
+
     font-weight: 1000;
+
     white-space: nowrap;
 }
 
 
+.final-box {
+
+    width: 72px;
+
+    height: 58px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border:
+        4px solid
+        #b8d765;
+
+    border-radius: 13px;
+
+    background: #f0f8c9;
+
+    font-size: 36px;
+
+    font-weight: 1000;
+}
+
+
+.final-box.correct {
+
+    border-color: #55b560;
+
+    background: #ddf5df;
+}
+
+
+.final-box.wrong {
+
+    border-color: #e64f4f;
+
+    background: #ffe1e1;
+
+    animation:
+        shake 0.3s;
+}
+
+
 /* =========================================================
-   메시지
+   설명
 ========================================================= */
 
 .message {
-    min-height: 28px;
 
-    margin: 3px 0 7px;
+    min-height: 29px;
+
+    margin:
+        6px 0;
 
     text-align: center;
 
-    font-size: clamp(14px, 1.6vw, 19px);
+    font-size:
+        clamp(
+            14px,
+            1.6vw,
+            20px
+        );
 
     font-weight: 900;
 }
+
 
 .correct-message {
     color: #23812b;
 }
 
+
 .wrong-message {
-    color: #cf2929;
+    color: #c92c2c;
 }
 
 
@@ -567,93 +1051,138 @@ button:active {
 ========================================================= */
 
 .keypad {
+
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+
+    grid-template-columns:
+        repeat(
+            5,
+            1fr
+        );
+
     gap: 6px;
 }
 
+
 .num-btn {
+
     min-width: 0;
-    min-height: 54px;
+
+    min-height: 55px;
+
+    border:
+        2px solid
+        #d4deea;
 
     border-radius: 11px;
 
-    border: 2px solid #d5deea;
-
     background: #f8fafc;
-
-    box-shadow: 0 2px 0 #cbd5df;
 
     color: #192537;
 
-    font-size: clamp(22px, 2.5vw, 31px);
+    font-size:
+        clamp(
+            22px,
+            2.5vw,
+            31px
+        );
 
     font-weight: 1000;
+
+    box-shadow:
+        0 2px 0
+        #cbd5df;
 }
 
+
 .num-btn:disabled {
-    opacity: 0.35;
+
+    opacity: 0.32;
+
     cursor: default;
+
     transform: none;
 }
 
 
 /* =========================================================
-   각 학생 개인 도착 화면
+   개인 도착
 ========================================================= */
 
 .personal-finish {
-    flex: 1;
 
-    min-height: 280px;
+    min-height: 330px;
 
     display: flex;
+
     flex-direction: column;
 
     justify-content: center;
+
     align-items: center;
 
     text-align: center;
-
-    padding: 20px 8px;
 }
 
-.personal-finish-icon {
-    font-size: clamp(55px, 7vw, 90px);
+
+.finish-icon {
+
+    font-size:
+        clamp(
+            58px,
+            7vw,
+            90px
+        );
 }
 
-.personal-finish-title {
-    margin-top: 4px;
 
-    font-size: clamp(29px, 4vw, 46px);
+.finish-title {
+
+    margin-top: 3px;
+
+    font-size:
+        clamp(
+            29px,
+            4vw,
+            46px
+        );
 
     font-weight: 1000;
 }
 
-.personal-finish-name {
-    margin-top: 5px;
 
-    font-size: clamp(22px, 3vw, 35px);
+.finish-name {
+
+    margin-top: 6px;
+
+    color:
+        var(--player-color);
+
+    font-size:
+        clamp(
+            22px,
+            3vw,
+            34px
+        );
 
     font-weight: 1000;
-
-    color: var(--player-color);
 }
 
-.personal-finish-text {
+
+.finish-text {
+
     margin-top: 8px;
-
-    font-size: clamp(14px, 1.6vw, 19px);
 
     color: #657085;
 
+    font-size:
+        clamp(
+            14px,
+            1.6vw,
+            19px
+        );
+
     font-weight: 800;
-}
-
-.personal-finish-track {
-    width: min(360px, 95%);
-
-    margin-top: 18px;
 }
 
 
@@ -662,24 +1191,39 @@ button:active {
 ========================================================= */
 
 .countdown-overlay {
+
     position: absolute;
 
     inset: 0;
 
     z-index: 1000;
 
-    background: rgba(255,255,255,0.96);
-
     display: flex;
 
     justify-content: center;
+
     align-items: center;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.96
+        );
 }
 
+
 .countdown-text {
-    font-size: clamp(80px, 15vw, 180px);
 
     color: #2478df;
+
+    font-size:
+        clamp(
+            80px,
+            15vw,
+            180px
+        );
 
     font-weight: 1000;
 }
@@ -692,43 +1236,48 @@ button:active {
 @keyframes shake {
 
     0% {
-        transform: translateX(0);
+        transform:
+            translateX(0);
     }
 
     25% {
-        transform: translateX(-7px);
+        transform:
+            translateX(-7px);
     }
 
     50% {
-        transform: translateX(7px);
+        transform:
+            translateX(7px);
     }
 
     75% {
-        transform: translateX(-7px);
+        transform:
+            translateX(-7px);
     }
 
     100% {
-        transform: translateX(0);
+        transform:
+            translateX(0);
     }
 }
+
 
 @keyframes pop {
 
     0% {
-        transform: scale(0.7);
+        transform:
+            scale(0.7);
     }
 
     70% {
-        transform: scale(1.12);
+        transform:
+            scale(1.15);
     }
 
     100% {
-        transform: scale(1);
+        transform:
+            scale(1);
     }
-}
-
-.carried-answer.show {
-    animation: pop 0.35s;
 }
 
 
@@ -736,17 +1285,16 @@ button:active {
    반응형
 ========================================================= */
 
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
 
     .player-grid.count-3,
     .player-grid.count-5 {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
 
-    .player-grid.count-5 .player-panel:nth-child(4),
-    .player-grid.count-5 .player-panel:nth-child(5) {
-        grid-column: auto;
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0,1fr)
+            );
     }
 }
 
@@ -754,39 +1302,56 @@ button:active {
 @media (max-width: 700px) {
 
     .settings {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
     }
 
+
     .names {
-        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
     }
+
 
     .player-grid.count-2,
     .player-grid.count-3,
     .player-grid.count-4,
     .player-grid.count-5 {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
     }
 
-    .problem {
-        font-size: 36px;
+
+    .original-expression {
+
+        font-size: 37px;
     }
 
-    .calc-expression,
-    .second-operation {
-        font-size: 27px;
+
+    .reduced-part {
+
+        font-size: 29px;
     }
+
 
     .num-btn {
-        min-height: 58px;
+
+        min-height: 59px;
     }
 }
 
 </style>
+
 </head>
 
-
 <body>
+
 
 
 <!-- ======================================================
@@ -797,67 +1362,98 @@ button:active {
          class="start-screen">
 
     <h1 class="main-title">
+
         🏃 세 수 계산 달리기
+
     </h1>
 
+
     <div class="sub-title">
-        앞에서부터 차례대로 계산해서 목적지에 도착해요!
+
+        앞에서부터 차례대로 계산해 목적지에 도착해요!
+
     </div>
 
 
     <div class="settings">
 
+
         <div class="setting">
 
             <label for="playerCount">
+
                 👥 참여 인원
+
             </label>
+
 
             <select id="playerCount">
 
-                <option value="1" selected>
+                <option value="1"
+                        selected>
+
                     1명
+
                 </option>
 
                 <option value="2">
+
                     2명
+
                 </option>
 
                 <option value="3">
+
                     3명
+
                 </option>
 
                 <option value="4">
+
                     4명
+
                 </option>
 
                 <option value="5">
+
                     5명
+
                 </option>
 
             </select>
 
         </div>
+
 
 
         <div class="setting">
 
             <label for="mode">
+
                 🧮 문제 종류
+
             </label>
+
 
             <select id="mode">
 
-                <option value="add" selected>
+                <option value="add"
+                        selected>
+
                     덧셈
+
                 </option>
 
                 <option value="sub">
+
                     뺄셈
+
                 </option>
 
                 <option value="mixed">
+
                     덧셈·뺄셈 섞기
+
                 </option>
 
             </select>
@@ -865,28 +1461,41 @@ button:active {
         </div>
 
 
+
         <div class="setting">
 
             <label for="goal">
+
                 🏁 목적지까지
+
             </label>
+
 
             <select id="goal">
 
                 <option value="5">
+
                     5문제
+
                 </option>
 
-                <option value="10" selected>
+                <option value="10"
+                        selected>
+
                     10문제
+
                 </option>
 
                 <option value="15">
+
                     15문제
+
                 </option>
 
                 <option value="20">
+
                     20문제
+
                 </option>
 
             </select>
@@ -920,12 +1529,16 @@ button:active {
 <section id="gameScreen"
          class="game-screen hidden">
 
+
     <header class="game-header">
 
         <div id="gameInfo"
              class="game-info">
+
             덧셈 · 목적지 10문제
+
         </div>
+
 
         <button id="exitBtn"
                 class="exit-btn"
@@ -945,7 +1558,9 @@ button:active {
 </section>
 
 
+
 <script>
+
 (() => {
 
 "use strict";
@@ -956,39 +1571,68 @@ button:active {
 ======================================================== */
 
 const startScreen =
-    document.getElementById("startScreen");
+    document.getElementById(
+        "startScreen"
+    );
+
 
 const gameScreen =
-    document.getElementById("gameScreen");
+    document.getElementById(
+        "gameScreen"
+    );
+
 
 const playerCountSelect =
-    document.getElementById("playerCount");
+    document.getElementById(
+        "playerCount"
+    );
+
 
 const modeSelect =
-    document.getElementById("mode");
+    document.getElementById(
+        "mode"
+    );
+
 
 const goalSelect =
-    document.getElementById("goal");
+    document.getElementById(
+        "goal"
+    );
+
 
 const nameInputs =
-    document.getElementById("nameInputs");
+    document.getElementById(
+        "nameInputs"
+    );
+
 
 const playerGrid =
-    document.getElementById("playerGrid");
+    document.getElementById(
+        "playerGrid"
+    );
+
 
 const gameInfo =
-    document.getElementById("gameInfo");
+    document.getElementById(
+        "gameInfo"
+    );
+
 
 const startBtn =
-    document.getElementById("startBtn");
+    document.getElementById(
+        "startBtn"
+    );
+
 
 const exitBtn =
-    document.getElementById("exitBtn");
+    document.getElementById(
+        "exitBtn"
+    );
 
 
 
 /* ========================================================
-   선수 설정
+   선수 스타일
 ======================================================== */
 
 const PLAYER_STYLES = [
@@ -1023,51 +1667,79 @@ const PLAYER_STYLES = [
 
 let players = [];
 
-let gameMode = "add";
+let gameMode =
+    "add";
 
-let goal = 10;
+let goal =
+    10;
 
-let audioContext = null;
+let audioContext =
+    null;
 
-let countdownTimer = null;
+let countdownTimer =
+    null;
 
-let stopped = false;
+let stopped =
+    false;
 
 
 
 /* ========================================================
-   이름 입력창
+   이름 입력
 ======================================================== */
 
 function makeNameInputs() {
 
     const count =
-        Number(playerCountSelect.value);
+        Number(
+            playerCountSelect.value
+        );
 
 
     const oldValues =
-        [...nameInputs.querySelectorAll("input")]
-        .map(input => input.value);
+        [
+            ...nameInputs
+            .querySelectorAll(
+                "input"
+            )
+        ]
+        .map(
+            input =>
+                input.value
+        );
 
 
-    nameInputs.innerHTML = "";
+    nameInputs.innerHTML =
+        "";
 
 
-    for (let i = 0; i < count; i++) {
+    for (
+        let i = 0;
+        i < count;
+        i++
+    ) {
 
         const input =
-            document.createElement("input");
+            document.createElement(
+                "input"
+            );
 
 
-        input.type = "text";
+        input.type =
+            "text";
+
 
         input.className =
             "name-input";
 
-        input.maxLength = 8;
+
+        input.maxLength =
+            8;
+
 
         input.placeholder =
             `${i + 1}번`;
+
 
         input.value =
             oldValues[i] ||
@@ -1088,14 +1760,17 @@ function makeNameInputs() {
 
 function startGame() {
 
-    stopped = false;
+    stopped =
+        false;
 
 
     initAudio();
 
 
     const count =
-        Number(playerCountSelect.value);
+        Number(
+            playerCountSelect.value
+        );
 
 
     gameMode =
@@ -1103,41 +1778,57 @@ function startGame() {
 
 
     goal =
-        Number(goalSelect.value);
+        Number(
+            goalSelect.value
+        );
 
 
-    const inputList =
-        [...nameInputs.querySelectorAll("input")];
+    const inputs =
+        [
+            ...nameInputs
+            .querySelectorAll(
+                "input"
+            )
+        ];
 
 
-    players = [];
+    players =
+        [];
 
 
-    for (let i = 0; i < count; i++) {
+    for (
+        let i = 0;
+        i < count;
+        i++
+    ) {
 
         players.push({
 
             id: i,
 
             name:
-                inputList[i].value.trim() ||
+                inputs[i]
+                .value
+                .trim() ||
                 `${i + 1}번`,
 
             emoji:
-                PLAYER_STYLES[i].emoji,
+                PLAYER_STYLES[i]
+                .emoji,
 
             color:
-                PLAYER_STYLES[i].color,
+                PLAYER_STYLES[i]
+                .color,
 
             progress: 0,
 
             step: 1,
 
-            problem: null,
-
             locked: true,
 
             finished: false,
+
+            problem: null,
 
             panel: null,
 
@@ -1147,23 +1838,19 @@ function startGame() {
 
             progressText: null,
 
-            problemText: null,
-
-            firstExpression: null,
+            firstGroup: null,
 
             firstAnswer: null,
 
-            carriedAnswer: null,
+            continueArea: null,
 
-            secondOperation: null,
+            continueCaption: null,
 
-            secondAnswer: null,
+            carriedNumber: null,
 
-            row1: null,
+            reducedPart: null,
 
-            row2: null,
-
-            flowMessage: null,
+            finalAnswer: null,
 
             message: null,
 
@@ -1187,14 +1874,20 @@ function startGame() {
 
 
     const modeName =
+
         gameMode === "add"
+
         ? "덧셈"
+
         : gameMode === "sub"
+
         ? "뺄셈"
+
         : "덧셈·뺄셈";
 
 
     gameInfo.textContent =
+
         `${modeName} · 목적지 ${goal}문제`;
 
 
@@ -1206,18 +1899,27 @@ function startGame() {
 
 
 /* ========================================================
-   각자 화면 만들기
+   학생별 화면
 ======================================================== */
 
 function buildPlayerPanels() {
 
-    playerGrid.innerHTML = "";
+    playerGrid.innerHTML =
+        "";
 
 
-    players.forEach(player => {
+    players.forEach(
+        player => {
+
+
+        /* ========================
+           전체 패널
+        ======================== */
 
         const panel =
-            document.createElement("section");
+            document.createElement(
+                "section"
+            );
 
 
         panel.className =
@@ -1225,17 +1927,22 @@ function buildPlayerPanels() {
 
 
         panel.style.setProperty(
+
             "--player-color",
+
             player.color
         );
 
 
-        /* ----------------------
-           상단
-        ---------------------- */
+
+        /* ========================
+           이름
+        ======================== */
 
         const head =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         head.className =
@@ -1243,7 +1950,9 @@ function buildPlayerPanels() {
 
 
         const title =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         title.className =
@@ -1251,7 +1960,9 @@ function buildPlayerPanels() {
 
 
         const emoji =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
 
 
         emoji.className =
@@ -1263,7 +1974,9 @@ function buildPlayerPanels() {
 
 
         const name =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
 
 
         name.className =
@@ -1285,7 +1998,9 @@ function buildPlayerPanels() {
 
 
         const progress =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         progress.className =
@@ -1307,12 +2022,14 @@ function buildPlayerPanels() {
 
 
 
-        /* ----------------------
+        /* ========================
            트랙
-        ---------------------- */
+        ======================== */
 
         const track =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         track.className =
@@ -1320,7 +2037,9 @@ function buildPlayerPanels() {
 
 
         const runner =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         runner.className =
@@ -1337,206 +2056,377 @@ function buildPlayerPanels() {
 
 
 
-        /* ----------------------
-           플레이 영역
-        ---------------------- */
+        /* ========================
+           내용
+        ======================== */
 
         const content =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
+
+        const problemArea =
+            document.createElement(
+                "div"
+            );
+
+
+        problemArea.className =
+            "problem-area";
 
 
 
-        /* 문제 */
+        /* ========================
+           원래 식
+        ======================== */
 
-        const problem =
-            document.createElement("div");
-
-
-        problem.className =
-            "problem";
-
-
-        problem.textContent =
-            "준비!";
+        const originalExpression =
+            document.createElement(
+                "div"
+            );
 
 
-
-        /* 연속 계산 */
-
-        const chain =
-            document.createElement("div");
+        originalExpression.className =
+            "original-expression";
 
 
-        chain.className =
-            "calculation-chain";
+        const firstGroup =
+            document.createElement(
+                "span"
+            );
+
+
+        firstGroup.className =
+            "first-group";
+
+
+        const numberA =
+            document.createElement(
+                "span"
+            );
+
+
+        numberA.className =
+            "expression-token";
+
+
+        const op1 =
+            document.createElement(
+                "span"
+            );
+
+
+        op1.className =
+            "expression-token";
+
+
+        const numberB =
+            document.createElement(
+                "span"
+            );
+
+
+        numberB.className =
+            "expression-token";
+
+
+        firstGroup.appendChild(
+            numberA
+        );
+
+
+        firstGroup.appendChild(
+            op1
+        );
+
+
+        firstGroup.appendChild(
+            numberB
+        );
+
+
+        const op2 =
+            document.createElement(
+                "span"
+            );
+
+
+        op2.className =
+            "expression-token";
+
+
+        const numberC =
+            document.createElement(
+                "span"
+            );
+
+
+        numberC.className =
+            "expression-token";
+
+
+        const equal =
+            document.createElement(
+                "span"
+            );
+
+
+        equal.className =
+            "expression-token";
+
+
+        equal.textContent =
+            "=";
+
+
+        const question =
+            document.createElement(
+                "span"
+            );
+
+
+        question.className =
+            "expression-token";
+
+
+        question.textContent =
+            "?";
+
+
+        originalExpression.appendChild(
+            firstGroup
+        );
+
+
+        originalExpression.appendChild(
+            op2
+        );
+
+
+        originalExpression.appendChild(
+            numberC
+        );
+
+
+        originalExpression.appendChild(
+            equal
+        );
+
+
+        originalExpression.appendChild(
+            question
+        );
 
 
 
-        /* 첫 번째 계산 */
+        /* ========================
+           첫 계산 결과
+        ======================== */
 
-        const row1 =
-            document.createElement("div");
-
-
-        row1.className =
-            "calc-row active";
-
-
-        const firstExpression =
-            document.createElement("div");
+        const firstStepArea =
+            document.createElement(
+                "div"
+            );
 
 
-        firstExpression.className =
-            "calc-expression";
+        firstStepArea.className =
+            "first-step-area";
+
+
+        const firstLine =
+            document.createElement(
+                "div"
+            );
+
+
+        firstLine.className =
+            "first-down-line";
+
+
+        const firstArrow =
+            document.createElement(
+                "div"
+            );
+
+
+        firstArrow.className =
+            "first-down-arrow";
+
+
+        const stepCaption =
+            document.createElement(
+                "div"
+            );
+
+
+        stepCaption.className =
+            "step-caption";
+
+
+        stepCaption.textContent =
+            "앞의 두 수를 먼저 계산해요";
 
 
         const firstAnswer =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         firstAnswer.className =
             "answer-box";
 
 
-        row1.appendChild(
-            firstExpression
+        firstStepArea.appendChild(
+            firstLine
         );
 
 
-        row1.appendChild(
+        firstStepArea.appendChild(
+            firstArrow
+        );
+
+
+        firstStepArea.appendChild(
+            stepCaption
+        );
+
+
+        firstStepArea.appendChild(
             firstAnswer
         );
 
 
 
-        /* 답이 아래로 이어짐 */
+        /* ========================
+           두 번째 계산으로 이어짐
+        ======================== */
 
-        const flow =
-            document.createElement("div");
-
-
-        flow.className =
-            "answer-flow";
-
-
-        const flowLine =
-            document.createElement("div");
+        const continueArea =
+            document.createElement(
+                "div"
+            );
 
 
-        flowLine.className =
-            "flow-line";
+        continueArea.className =
+            "continue-area";
 
 
-        const flowArrow =
-            document.createElement("div");
+        const continueLine =
+            document.createElement(
+                "div"
+            );
 
 
-        flowArrow.className =
-            "flow-arrow";
+        continueLine.className =
+            "continue-line";
 
 
-        const flowMessage =
-            document.createElement("div");
+        const continueArrow =
+            document.createElement(
+                "div"
+            );
 
 
-        flowMessage.className =
-            "flow-message";
+        continueArrow.className =
+            "continue-arrow";
 
 
-        flowMessage.textContent =
-            "첫 번째 답을 아래 계산에 이어서 써요";
+        const continueCaption =
+            document.createElement(
+                "div"
+            );
 
 
-        flow.appendChild(
-            flowLine
+        continueCaption.className =
+            "continue-caption";
+
+
+        const reducedExpression =
+            document.createElement(
+                "div"
+            );
+
+
+        reducedExpression.className =
+            "reduced-expression";
+
+
+        const carriedNumber =
+            document.createElement(
+                "div"
+            );
+
+
+        carriedNumber.className =
+            "carried-number";
+
+
+        const reducedPart =
+            document.createElement(
+                "div"
+            );
+
+
+        reducedPart.className =
+            "reduced-part";
+
+
+        const finalAnswer =
+            document.createElement(
+                "div"
+            );
+
+
+        finalAnswer.className =
+            "final-box";
+
+
+        reducedExpression.appendChild(
+            carriedNumber
         );
 
 
-        flow.appendChild(
-            flowArrow
+        reducedExpression.appendChild(
+            reducedPart
         );
 
 
-        flow.appendChild(
-            flowMessage
+        reducedExpression.appendChild(
+            finalAnswer
         );
 
 
-
-        /* 두 번째 계산 */
-
-        const row2 =
-            document.createElement("div");
-
-
-        row2.className =
-            "second-row";
-
-
-        const carriedAnswer =
-            document.createElement("div");
-
-
-        carriedAnswer.className =
-            "carried-answer waiting";
-
-
-        carriedAnswer.textContent =
-            "?";
-
-
-        const secondOperation =
-            document.createElement("div");
-
-
-        secondOperation.className =
-            "second-operation";
-
-
-        const secondAnswer =
-            document.createElement("div");
-
-
-        secondAnswer.className =
-            "answer-box final";
-
-
-        row2.appendChild(
-            carriedAnswer
+        continueArea.appendChild(
+            continueLine
         );
 
 
-        row2.appendChild(
-            secondOperation
+        continueArea.appendChild(
+            continueArrow
         );
 
 
-        row2.appendChild(
-            secondAnswer
+        continueArea.appendChild(
+            continueCaption
         );
 
 
-
-        chain.appendChild(
-            row1
-        );
-
-
-        chain.appendChild(
-            flow
-        );
-
-
-        chain.appendChild(
-            row2
+        continueArea.appendChild(
+            reducedExpression
         );
 
 
 
-        /* 안내 문구 */
+        /* ========================
+           메시지
+        ======================== */
 
         const message =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         message.className =
@@ -1548,26 +2438,36 @@ function buildPlayerPanels() {
 
 
 
-        /* 숫자판 */
+        /* ========================
+           숫자판
+        ======================== */
 
         const keypad =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         keypad.className =
             "keypad";
 
 
-        const buttons = [];
+        const buttons =
+            [];
 
 
         [
-            1, 2, 3, 4, 5,
-            6, 7, 8, 9, 0
-        ].forEach(number => {
+            1,2,3,4,5,
+            6,7,8,9,0
+        ]
+        .forEach(
+            number => {
+
 
             const button =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
 
 
             button.type =
@@ -1587,11 +2487,15 @@ function buildPlayerPanels() {
 
 
             button.addEventListener(
+
                 "click",
+
                 () => {
 
                     submitAnswer(
+
                         player.id,
+
                         number
                     );
                 }
@@ -1610,13 +2514,27 @@ function buildPlayerPanels() {
 
 
 
-        content.appendChild(
-            problem
+        /* ========================
+           조립
+        ======================== */
+
+        problemArea.appendChild(
+            originalExpression
+        );
+
+
+        problemArea.appendChild(
+            firstStepArea
+        );
+
+
+        problemArea.appendChild(
+            continueArea
         );
 
 
         content.appendChild(
-            chain
+            problemArea
         );
 
 
@@ -1628,7 +2546,6 @@ function buildPlayerPanels() {
         content.appendChild(
             keypad
         );
-
 
 
         panel.appendChild(
@@ -1652,52 +2569,85 @@ function buildPlayerPanels() {
 
 
 
-        /* 참조 저장 */
+        /* ========================
+           참조 저장
+        ======================== */
 
         player.panel =
             panel;
 
+
         player.content =
             content;
+
 
         player.runner =
             runner;
 
+
         player.progressText =
             progress;
 
-        player.problemText =
-            problem;
 
-        player.firstExpression =
-            firstExpression;
+        player.firstGroup =
+            firstGroup;
+
+
+        player.numberA =
+            numberA;
+
+
+        player.op1Token =
+            op1;
+
+
+        player.numberB =
+            numberB;
+
+
+        player.op2Token =
+            op2;
+
+
+        player.numberC =
+            numberC;
+
+
+        player.questionToken =
+            question;
+
 
         player.firstAnswer =
             firstAnswer;
 
-        player.carriedAnswer =
-            carriedAnswer;
 
-        player.secondOperation =
-            secondOperation;
+        player.continueArea =
+            continueArea;
 
-        player.secondAnswer =
-            secondAnswer;
 
-        player.row1 =
-            row1;
+        player.continueCaption =
+            continueCaption;
 
-        player.row2 =
-            row2;
 
-        player.flowMessage =
-            flowMessage;
+        player.carriedNumber =
+            carriedNumber;
+
+
+        player.reducedPart =
+            reducedPart;
+
+
+        player.finalAnswer =
+            finalAnswer;
+
 
         player.message =
             message;
 
+
         player.buttons =
             buttons;
+
     });
 }
 
@@ -1710,7 +2660,9 @@ function buildPlayerPanels() {
 function runCountdown() {
 
     const overlay =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     overlay.className =
@@ -1718,7 +2670,9 @@ function runCountdown() {
 
 
     const text =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     text.className =
@@ -1740,15 +2694,23 @@ function runCountdown() {
 
 
     const sequence =
-        ["3", "2", "1", "시작!"];
+        [
+            "3",
+            "2",
+            "1",
+            "시작!"
+        ];
 
 
-    let index = 0;
+    let index =
+        0;
 
 
     function next() {
 
-        if (stopped) {
+        if (
+            stopped
+        ) {
 
             overlay.remove();
 
@@ -1760,10 +2722,14 @@ function runCountdown() {
             sequence[index];
 
 
-        if (index < 3) {
+        if (
+            index < 3
+        ) {
 
             playCountdownSound(
-                400 + index * 120
+
+                400 +
+                index * 120
             );
 
         } else {
@@ -1782,28 +2748,36 @@ function runCountdown() {
 
             countdownTimer =
                 setTimeout(
+
                     next,
+
                     650
                 );
 
         } else {
 
             countdownTimer =
-                setTimeout(() => {
+                setTimeout(
 
-                    overlay.remove();
+                    () => {
+
+                        overlay.remove();
 
 
-                    players.forEach(
-                        player => {
+                        players
+                        .forEach(
+                            player => {
 
-                            loadProblem(
-                                player
-                            );
-                        }
-                    );
+                                loadProblem(
+                                    player
+                                );
+                            }
+                        );
 
-                }, 600);
+                    },
+
+                    550
+                );
         }
     }
 
@@ -1817,7 +2791,9 @@ function runCountdown() {
    새 문제
 ======================================================== */
 
-function loadProblem(player) {
+function loadProblem(
+    player
+) {
 
     if (
         stopped ||
@@ -1832,69 +2808,99 @@ function loadProblem(player) {
         createProblem();
 
 
-    player.step = 1;
+    player.step =
+        1;
 
-    player.locked = false;
+
+    player.locked =
+        false;
 
 
     const p =
         player.problem;
 
 
-    player.problemText.textContent =
-        `${p.a} ${p.op1} ${p.b} ${p.op2} ${p.c} = ?`;
+
+    /* 원래 식 */
+
+    player.numberA
+        .textContent =
+        p.a;
 
 
-    player.firstExpression.textContent =
-        `${p.a} ${p.op1} ${p.b} =`;
+    player.op1Token
+        .textContent =
+        p.op1;
 
 
-    player.firstAnswer.textContent =
-        "";
+    player.numberB
+        .textContent =
+        p.b;
 
 
-    player.carriedAnswer.textContent =
+    player.op2Token
+        .textContent =
+        p.op2;
+
+
+    player.numberC
+        .textContent =
+        p.c;
+
+
+    player.questionToken
+        .textContent =
         "?";
 
 
-    player.carriedAnswer.className =
-        "carried-answer waiting";
+
+    /* 첫 두 수 묶음 */
+
+    player.firstGroup
+        .className =
+        "first-group";
 
 
-    player.secondOperation.textContent =
-        `${p.op2} ${p.c} =`;
 
+    /* 첫 답 */
 
-    player.secondAnswer.textContent =
+    player.firstAnswer
+        .textContent =
         "";
 
 
-    player.firstAnswer.className =
+    player.firstAnswer
+        .className =
         "answer-box";
 
 
-    player.secondAnswer.className =
-        "answer-box final";
+
+    /* 두 번째 과정은 처음에 숨김 */
+
+    player.continueArea
+        .className =
+        "continue-area";
 
 
-    player.row1.className =
-        "calc-row active";
+    player.finalAnswer
+        .textContent =
+        "";
 
 
-    player.row2.className =
-        "second-row";
+    player.finalAnswer
+        .className =
+        "final-box";
 
 
-    player.flowMessage.textContent =
-        "첫 번째 답을 아래 계산에 이어서 써요";
 
-
-    player.message.className =
+    player.message
+        .className =
         "message";
 
 
-    player.message.textContent =
-        "① 먼저 앞의 두 수를 계산해요.";
+    player.message
+        .textContent =
+        "① 파란 선으로 묶인 앞의 두 수를 계산해요.";
 
 
     setButtonsEnabled(
@@ -1906,7 +2912,7 @@ function loadProblem(player) {
 
 
 /* ========================================================
-   숫자 입력
+   답 입력
 ======================================================== */
 
 function submitAnswer(
@@ -1921,8 +2927,8 @@ function submitAnswer(
     if (
         stopped ||
         !player ||
-        player.locked ||
-        player.finished
+        player.finished ||
+        player.locked
     ) {
 
         return;
@@ -1934,13 +2940,14 @@ function submitAnswer(
 
 
 
-    /* 첫 번째 계산 */
+    /* 첫 계산 */
 
     if (
         player.step === 1
     ) {
 
-        player.firstAnswer.textContent =
+        player.firstAnswer
+            .textContent =
             number;
 
 
@@ -1956,7 +2963,9 @@ function submitAnswer(
         } else {
 
             wrongAnswer(
+
                 player,
+
                 player.firstAnswer
             );
         }
@@ -1967,13 +2976,14 @@ function submitAnswer(
 
 
 
-    /* 두 번째 계산 */
+    /* 최종 계산 */
 
     if (
         player.step === 2
     ) {
 
-        player.secondAnswer.textContent =
+        player.finalAnswer
+            .textContent =
             number;
 
 
@@ -1989,8 +2999,10 @@ function submitAnswer(
         } else {
 
             wrongAnswer(
+
                 player,
-                player.secondAnswer
+
+                player.finalAnswer
             );
         }
     }
@@ -1999,59 +3011,72 @@ function submitAnswer(
 
 
 /* ========================================================
-   첫 번째 계산 정답
+   첫 두 수 계산 성공
 ======================================================== */
 
 function firstStepCorrect(
     player
 ) {
 
-    player.firstAnswer.classList.add(
-        "correct"
-    );
+    const p =
+        player.problem;
 
 
-    player.row1.classList.remove(
-        "active"
-    );
+    player.firstAnswer
+        .classList
+        .add(
+            "correct"
+        );
 
 
-    player.row1.classList.add(
-        "complete"
-    );
+    player.firstGroup
+        .classList
+        .add(
+            "done"
+        );
+
 
 
     /*
-       첫 번째 답을
-       두 번째 계산의 첫 번째 수로 그대로 이동
+       핵심:
+       앞의 두 수의 답을
+       그대로 아래 계산의 첫 수로 사용
     */
 
-    player.carriedAnswer.textContent =
-        player.problem.middle;
+    player.carriedNumber
+        .textContent =
+        p.middle;
 
 
-    player.carriedAnswer.className =
-        "carried-answer show";
+    player.reducedPart
+        .textContent =
+        `${p.op2} ${p.c} =`;
 
 
-    player.row2.classList.add(
-        "active"
-    );
+    player.continueCaption
+        .textContent =
+        `${p.middle}을(를) 다음 수와 이어서 계산해요`;
 
 
-    player.flowMessage.textContent =
-        `${player.problem.middle}을(를) 아래로 이어서 계산해요!`;
+    player.continueArea
+        .classList
+        .add(
+            "show"
+        );
 
 
-    player.step = 2;
+    player.step =
+        2;
 
 
-    player.message.className =
+    player.message
+        .className =
         "message correct-message";
 
 
-    player.message.textContent =
-        "② 첫 번째 답에서 이어서 계산해요.";
+    player.message
+        .textContent =
+        `② ${p.middle}과(와) ${p.c}을(를) 이어서 계산해요.`;
 
 
     playStepSound();
@@ -2067,7 +3092,8 @@ function finalCorrect(
     player
 ) {
 
-    player.locked = true;
+    player.locked =
+        true;
 
 
     setButtonsEnabled(
@@ -2076,23 +3102,16 @@ function finalCorrect(
     );
 
 
-    player.secondAnswer.classList.add(
-        "correct"
-    );
+    player.finalAnswer
+        .classList
+        .add(
+            "correct"
+        );
 
 
-    player.row2.classList.remove(
-        "active"
-    );
-
-
-    player.row2.classList.add(
-        "complete"
-    );
-
-
-    player.problemText.textContent =
-        `${player.problem.a} ${player.problem.op1} ${player.problem.b} ${player.problem.op2} ${player.problem.c} = ${player.problem.answer}`;
+    player.questionToken
+        .textContent =
+        player.problem.answer;
 
 
     player.progress++;
@@ -2103,32 +3122,38 @@ function finalCorrect(
     );
 
 
-    player.message.className =
+    player.message
+        .className =
         "message correct-message";
 
 
-    player.message.textContent =
-        "⭕ 정답! 한 칸 앞으로!";
+    player.message
+        .textContent =
+        "⭕ 맞았어요! 세 수를 순서대로 계산했어요.";
 
 
     playCorrectSound();
 
 
 
-    /* 개인 목적지 도착 */
+    /* 목적지 도착 */
 
     if (
         player.progress >=
         goal
     ) {
 
-        setTimeout(() => {
+        setTimeout(
 
-            finishPlayer(
-                player
-            );
+            () => {
 
-        }, 750);
+                finishPlayer(
+                    player
+                );
+            },
+
+            800
+        );
 
 
         return;
@@ -2136,19 +3161,25 @@ function finalCorrect(
 
 
 
-    setTimeout(() => {
+    /* 다음 문제 */
 
-        if (
-            !stopped &&
-            !player.finished
-        ) {
+    setTimeout(
 
-            loadProblem(
-                player
-            );
-        }
+        () => {
 
-    }, 900);
+            if (
+                !stopped &&
+                !player.finished
+            ) {
+
+                loadProblem(
+                    player
+                );
+            }
+        },
+
+        1050
+    );
 }
 
 
@@ -2162,7 +3193,8 @@ function wrongAnswer(
     answerBox
 ) {
 
-    player.locked = true;
+    player.locked =
+        true;
 
 
     setButtonsEnabled(
@@ -2171,12 +3203,20 @@ function wrongAnswer(
     );
 
 
-    answerBox.classList.add(
-        "wrong"
-    );
+    answerBox
+        .classList
+        .add(
+            "wrong"
+        );
 
 
-    player.progress = 0;
+    /*
+       틀리면
+       즉시 출발점
+    */
+
+    player.progress =
+        0;
 
 
     updateProgress(
@@ -2184,36 +3224,43 @@ function wrongAnswer(
     );
 
 
-    player.message.className =
+    player.message
+        .className =
         "message wrong-message";
 
 
-    player.message.textContent =
+    player.message
+        .textContent =
         "❌ 틀렸어요! 출발점으로 돌아가요.";
 
 
     playWrongSound();
 
 
-    setTimeout(() => {
 
-        if (
-            !stopped &&
-            !player.finished
-        ) {
+    setTimeout(
 
-            loadProblem(
-                player
-            );
-        }
+        () => {
 
-    }, 1350);
+            if (
+                !stopped &&
+                !player.finished
+            ) {
+
+                loadProblem(
+                    player
+                );
+            }
+        },
+
+        1400
+    );
 }
 
 
 
 /* ========================================================
-   진행 상황
+   진행도
 ======================================================== */
 
 function updateProgress(
@@ -2222,27 +3269,34 @@ function updateProgress(
 
     const ratio =
         Math.min(
-            player.progress / goal,
+
+            player.progress /
+            goal,
+
             1
         );
 
 
     const left =
-        6 + ratio * 88;
+        6 +
+        ratio * 88;
 
 
-    player.runner.style.left =
+    player.runner
+        .style
+        .left =
         `${left}%`;
 
 
-    player.progressText.textContent =
+    player.progressText
+        .textContent =
         `${player.progress} / ${goal}`;
 }
 
 
 
 /* ========================================================
-   개인별 도착
+   개인 도착
 ======================================================== */
 
 function finishPlayer(
@@ -2257,15 +3311,12 @@ function finishPlayer(
     }
 
 
-    player.finished = true;
+    player.finished =
+        true;
 
-    player.locked = true;
 
-
-    setButtonsEnabled(
-        player,
-        false
-    );
+    player.locked =
+        true;
 
 
     player.progress =
@@ -2277,19 +3328,30 @@ function finishPlayer(
     );
 
 
+    setButtonsEnabled(
+        player,
+        false
+    );
+
+
     playFinishSound();
 
 
+
     /*
-       전체 화면을 끝내지 않고
-       이 학생 화면만 도착 화면으로 변경
+       전체 화면 종료 X
+       자기 화면만 종료
     */
 
-    player.content.innerHTML = "";
+    player.content
+        .innerHTML =
+        "";
 
 
     const finish =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     finish.className =
@@ -2297,11 +3359,13 @@ function finishPlayer(
 
 
     const icon =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     icon.className =
-        "personal-finish-icon";
+        "finish-icon";
 
 
     icon.textContent =
@@ -2309,11 +3373,13 @@ function finishPlayer(
 
 
     const title =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     title.className =
-        "personal-finish-title";
+        "finish-title";
 
 
     title.textContent =
@@ -2321,11 +3387,13 @@ function finishPlayer(
 
 
     const name =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     name.className =
-        "personal-finish-name";
+        "finish-name";
 
 
     name.textContent =
@@ -2333,27 +3401,17 @@ function finishPlayer(
 
 
     const text =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     text.className =
-        "personal-finish-text";
+        "finish-text";
 
 
     text.textContent =
         `${goal}문제를 모두 통과했어요!`;
-
-
-    const miniTrack =
-        document.createElement("div");
-
-
-    miniTrack.className =
-        "personal-finish-track";
-
-
-    miniTrack.textContent =
-        "🚩 ━━━━━━━━━━━ 🏁";
 
 
     finish.appendChild(
@@ -2376,14 +3434,10 @@ function finishPlayer(
     );
 
 
-    finish.appendChild(
-        miniTrack
-    );
-
-
-    player.content.appendChild(
-        finish
-    );
+    player.content
+        .appendChild(
+            finish
+        );
 
 
     checkAllFinished();
@@ -2392,13 +3446,14 @@ function finishPlayer(
 
 
 /* ========================================================
-   전원 도착 여부
+   모두 도착
 ======================================================== */
 
 function checkAllFinished() {
 
     const allFinished =
         players.every(
+
             player =>
                 player.finished
         );
@@ -2422,7 +3477,8 @@ function checkAllFinished() {
 function createProblem() {
 
     if (
-        gameMode === "add"
+        gameMode ===
+        "add"
     ) {
 
         return makeAddition();
@@ -2430,7 +3486,8 @@ function createProblem() {
 
 
     if (
-        gameMode === "sub"
+        gameMode ===
+        "sub"
     ) {
 
         return makeSubtraction();
@@ -2451,14 +3508,19 @@ function createProblem() {
 
     const type =
         types[
+
             randomInt(
+
                 0,
+
                 types.length - 1
             )
         ];
 
 
-    switch (type) {
+    switch (
+        type
+    ) {
 
         case "add":
 
@@ -2484,23 +3546,34 @@ function createProblem() {
 
 
 /* ========================================================
-   덧셈
+   세 수 덧셈
 ======================================================== */
 
 function makeAddition() {
 
-    while (true) {
+    while (
+        true
+    ) {
 
         const a =
-            randomInt(1, 7);
+            randomInt(
+                1,
+                7
+            );
 
 
         const b =
-            randomInt(1, 7);
+            randomInt(
+                1,
+                7
+            );
 
 
         const c =
-            randomInt(1, 7);
+            randomInt(
+                1,
+                7
+            );
 
 
         const middle =
@@ -2539,15 +3612,20 @@ function makeAddition() {
 
 
 /* ========================================================
-   뺄셈
+   세 수 뺄셈
 ======================================================== */
 
 function makeSubtraction() {
 
-    while (true) {
+    while (
+        true
+    ) {
 
         const a =
-            randomInt(3, 9);
+            randomInt(
+                3,
+                9
+            );
 
 
         const b =
@@ -2602,19 +3680,27 @@ function makeSubtraction() {
 
 
 /* ========================================================
-   덧셈 후 뺄셈
+   덧셈 → 뺄셈
 ======================================================== */
 
 function makeAddSub() {
 
-    while (true) {
+    while (
+        true
+    ) {
 
         const a =
-            randomInt(1, 7);
+            randomInt(
+                1,
+                7
+            );
 
 
         const b =
-            randomInt(1, 7);
+            randomInt(
+                1,
+                7
+            );
 
 
         const middle =
@@ -2662,15 +3748,20 @@ function makeAddSub() {
 
 
 /* ========================================================
-   뺄셈 후 덧셈
+   뺄셈 → 덧셈
 ======================================================== */
 
 function makeSubAdd() {
 
-    while (true) {
+    while (
+        true
+    ) {
 
         const a =
-            randomInt(2, 9);
+            randomInt(
+                2,
+                9
+            );
 
 
         const b =
@@ -2729,7 +3820,7 @@ function makeSubAdd() {
 
 
 /* ========================================================
-   숫자판 ON / OFF
+   숫자 버튼
 ======================================================== */
 
 function setButtonsEnabled(
@@ -2737,13 +3828,14 @@ function setButtonsEnabled(
     enabled
 ) {
 
-    player.buttons.forEach(
-        button => {
+    player.buttons
+        .forEach(
+            button => {
 
-            button.disabled =
-                !enabled;
-        }
-    );
+                button.disabled =
+                    !enabled;
+            }
+        );
 }
 
 
@@ -2754,7 +3846,8 @@ function setButtonsEnabled(
 
 function goHome() {
 
-    stopped = true;
+    stopped =
+        true;
 
 
     if (
@@ -2781,14 +3874,18 @@ function goHome() {
         );
 
 
-    gameScreen.classList.add(
-        "hidden"
-    );
+    gameScreen
+        .classList
+        .add(
+            "hidden"
+        );
 
 
-    startScreen.classList.remove(
-        "hidden"
-    );
+    startScreen
+        .classList
+        .remove(
+            "hidden"
+        );
 }
 
 
@@ -2803,15 +3900,22 @@ function randomInt(
 ) {
 
     return Math.floor(
+
         Math.random() *
-        (max - min + 1)
+
+        (
+            max -
+            min +
+            1
+        )
+
     ) + min;
 }
 
 
 
 /* ========================================================
-   효과음
+   오디오
 ======================================================== */
 
 function initAudio() {
@@ -2848,10 +3952,15 @@ function initAudio() {
 
 
 function tone(
+
     frequency,
+
     duration,
+
     delay = 0,
+
     type = "sine",
+
     volume = 0.1
 ) {
 
@@ -2869,33 +3978,45 @@ function tone(
 
 
     const oscillator =
-        audioContext.createOscillator();
+        audioContext
+        .createOscillator();
 
 
     const gain =
-        audioContext.createGain();
+        audioContext
+        .createGain();
 
 
     oscillator.type =
         type;
 
 
-    oscillator.frequency.setValueAtTime(
-        frequency,
-        start
-    );
+    oscillator.frequency
+        .setValueAtTime(
+
+            frequency,
+
+            start
+        );
 
 
-    gain.gain.setValueAtTime(
-        volume,
-        start
-    );
+    gain.gain
+        .setValueAtTime(
+
+            volume,
+
+            start
+        );
 
 
-    gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        start + duration
-    );
+    gain.gain
+        .exponentialRampToValueAtTime(
+
+            0.001,
+
+            start +
+            duration
+        );
 
 
     oscillator.connect(
@@ -2914,13 +4035,15 @@ function tone(
 
 
     oscillator.stop(
-        start + duration
+
+        start +
+        duration
     );
 }
 
 
 
-/* 카운트다운 */
+/* 카운트 */
 
 function playCountdownSound(
     frequency
@@ -2930,17 +4053,22 @@ function playCountdownSound(
 
 
     tone(
+
         frequency,
+
         0.12,
+
         0,
+
         "sine",
+
         0.1
     );
 }
 
 
 
-/* 시작음 */
+/* 시작 */
 
 function playStartSound() {
 
@@ -2976,7 +4104,7 @@ function playStartSound() {
 
 
 
-/* 첫 계산 정답음 */
+/* 중간 정답 */
 
 function playStepSound() {
 
@@ -2994,7 +4122,7 @@ function playStepSound() {
 
 
 
-/* 문제 정답음 */
+/* 최종 정답 */
 
 function playCorrectSound() {
 
@@ -3021,7 +4149,7 @@ function playCorrectSound() {
 
 
 
-/* 오답음 */
+/* 오답 */
 
 function playWrongSound() {
 
@@ -3048,7 +4176,7 @@ function playWrongSound() {
 
 
 
-/* 개인 도착음 */
+/* 도착 */
 
 function playFinishSound() {
 
@@ -3097,20 +4225,29 @@ function playFinishSound() {
    이벤트
 ======================================================== */
 
-playerCountSelect.addEventListener(
+playerCountSelect
+.addEventListener(
+
     "change",
+
     makeNameInputs
 );
 
 
-startBtn.addEventListener(
+startBtn
+.addEventListener(
+
     "click",
+
     startGame
 );
 
 
-exitBtn.addEventListener(
+exitBtn
+.addEventListener(
+
     "click",
+
     goHome
 );
 
@@ -3122,7 +4259,9 @@ exitBtn.addEventListener(
 
 makeNameInputs();
 
+
 })();
+
 </script>
 
 </body>
